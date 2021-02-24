@@ -3,7 +3,8 @@
 #include "mod_7.h"
 #include "arith.h"
 #include "string.h"
-
+#include <vector>
+static int k = 1;//Кол-во введенных элементов (-1)
 
 namespace Project7 {
 
@@ -60,6 +61,7 @@ namespace Project7 {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column10;
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::Button^ button3;
+	private: System::Windows::Forms::Button^ button4;
 
 
 
@@ -114,6 +116,7 @@ namespace Project7 {
 			this->numericUpDown1 = (gcnew System::Windows::Forms::NumericUpDown());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->button4 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown1))->BeginInit();
 			this->SuspendLayout();
@@ -272,17 +275,30 @@ namespace Project7 {
 			// 
 			this->button3->Location = System::Drawing::Point(443, 67);
 			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(86, 23);
+			this->button3->Size = System::Drawing::Size(114, 23);
 			this->button3->TabIndex = 6;
-			this->button3->Text = L"Очистить";
+			this->button3->Text = L"Очистить все";
 			this->button3->UseVisualStyleBackColor = true;
 			this->button3->Click += gcnew System::EventHandler(this, &MyForm::button3_Click);
+			// 
+			// button4
+			// 
+			this->button4->Location = System::Drawing::Point(592, 66);
+			this->button4->Name = L"button4";
+			this->button4->Size = System::Drawing::Size(149, 23);
+			this->button4->TabIndex = 7;
+			this->button4->Text = L"Удалить последний";
+			this->button4->UseVisualStyleBackColor = true;
+			this->button4->Click += gcnew System::EventHandler(this, &MyForm::button4_Click);
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackColor = System::Drawing::Color::WhiteSmoke;
+			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
 			this->ClientSize = System::Drawing::Size(1182, 403);
+			this->Controls->Add(this->button4);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->numericUpDown1);
@@ -299,16 +315,15 @@ namespace Project7 {
 		}
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		const int N = 10;
-		int num[N];
-		int k = 0;//количество удов условию
-		for (int i = 0; i < N; i++) {
-			num[i] = (int)dataGridView1->Rows[0]->Cells[i+1]->Value;
+		std::vector <int> num;
+		int l = 0;//количество удов условию
+		for (int i = 0; i < k-1; i++) {
+			num.push_back( (int)dataGridView1->Rows[0]->Cells[i+1]->Value);
 		}
-		for (int i = 0; i < N; i++)
+		for (int i = 0; i < k-1; i++)
 			//dataGridView1->Rows->Add();
-			if (mod_7 (num[i]) && arith (num[i]) ) k++;
-		dataGridView1->Rows[0]->Cells[0]->Value = k;
+			if (mod_7 (num[i]) && arith (num[i]) ) l++;
+		dataGridView1->Rows[0]->Cells[0]->Value = l;
 	}
 private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
@@ -318,17 +333,22 @@ private: System::Void numericUpDown1_ValueChanged(System::Object^ sender, System
 private: System::Void contextMenuStrip1_Opening(System::Object^ sender, System::ComponentModel::CancelEventArgs^ e) {
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-	static int i = 1;
-	dataGridView1->Rows[0]->Cells[i++]->Value = (int)numericUpDown1->Value;
+	dataGridView1->Rows[0]->Cells[k++]->Value = (int)numericUpDown1->Value;
 }
 private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
-	const int N = 10;
-	for (int i=1;i<N;i++)
-	dataGridView1->Rows[0]->Cells[i]->Value = "";
-
 	
+	for (int i=0;i<k;i++)
+	dataGridView1->Rows[0]->Cells[i]->Value = "";
+	k = 1;
+	
+}
+private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (k > 1) dataGridView1->Rows[0]->Cells[--k] ->Value = "";
+		
+	
+
 }
 };
 }
