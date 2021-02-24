@@ -326,7 +326,7 @@ private: System::Void dataGridView1_CellContentClick(System::Object^ sender, Sys
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 	const int N = 10;
 	for (int i=1;i<N;i++)
-	dataGridView1->Rows[0]->Cells[i]->Value = "";
+	dataGridView1->Rows[0]->Cells[i]->Value = " ";
 
 	
 }
