@@ -333,6 +333,7 @@ private: System::Void numericUpDown1_ValueChanged(System::Object^ sender, System
 private: System::Void contextMenuStrip1_Opening(System::Object^ sender, System::ComponentModel::CancelEventArgs^ e) {
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (k!=11)
 	dataGridView1->Rows[0]->Cells[k++]->Value = (int)numericUpDown1->Value;
 }
 private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
