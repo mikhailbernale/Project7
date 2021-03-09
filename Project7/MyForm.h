@@ -307,6 +307,7 @@ namespace Project7 {
 			this->Controls->Add(this->label1);
 			this->Name = L"MyForm";
 			this->Text = L"Тестирование ПО";
+			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown1))->EndInit();
 			this->ResumeLayout(false);
@@ -350,6 +351,8 @@ private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e
 		
 	
 
+}
+private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }
