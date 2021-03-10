@@ -255,7 +255,7 @@ namespace Project7 {
 			// numericUpDown1
 			// 
 			this->numericUpDown1->Location = System::Drawing::Point(49, 67);
-			this->numericUpDown1->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 99999, 0, 0, 0 });
+			this->numericUpDown1->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1410065407, 2, 0, 0 });
 			this->numericUpDown1->Name = L"numericUpDown1";
 			this->numericUpDown1->Size = System::Drawing::Size(120, 22);
 			this->numericUpDown1->TabIndex = 4;
@@ -316,15 +316,20 @@ namespace Project7 {
 		}
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		std::vector <int> num;
-		int l = 0;//количество удов условию
-		for (int i = 0; i < k-1; i++) {
-			num.push_back( (int)dataGridView1->Rows[0]->Cells[i+1]->Value);
+		if (k == 11) {
+			std::vector <int> num;
+			int l = 0;//количество удов условию
+			for (int i = 0; i < k - 1; i++) {
+				num.push_back((int)dataGridView1->Rows[0]->Cells[i + 1]->Value);
+			}
+			for (int i = 0; i < k - 1; i++)
+				//dataGridView1->Rows->Add();
+				if (mod_7(num[i]) && arith(num[i])) l++;
+			if (l == 0) MessageBox::Show("„исла, удовлетвор€ющие условию, отсутствуют");
+			dataGridView1->Rows[0]->Cells[0]->Value = l;
 		}
-		for (int i = 0; i < k-1; i++)
-			//dataGridView1->Rows->Add();
-			if (mod_7 (num[i]) && arith (num[i]) ) l++;
-		dataGridView1->Rows[0]->Cells[0]->Value = l;
+		else MessageBox::Show("¬ведено " + (k - 1) + " чисел из 10");
+		
 	}
 private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
@@ -334,8 +339,15 @@ private: System::Void numericUpDown1_ValueChanged(System::Object^ sender, System
 private: System::Void contextMenuStrip1_Opening(System::Object^ sender, System::ComponentModel::CancelEventArgs^ e) {
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-	if (k!=11)
+	int num = (int)numericUpDown1->Value;
+	if (k!=11 && num<100000)
 	dataGridView1->Rows[0]->Cells[k++]->Value = (int)numericUpDown1->Value;
+	else {
+		if (num>99999)
+			MessageBox::Show("„исло " + num + " выходит за 5 разр€дов");
+		if (k>=11)
+			MessageBox::Show("¬ведено больше 10 чисел");
+	}
 }
 private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 }
