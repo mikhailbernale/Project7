@@ -340,16 +340,19 @@ private: System::Void numericUpDown1_ValueChanged(System::Object^ sender, System
 private: System::Void contextMenuStrip1_Opening(System::Object^ sender, System::ComponentModel::CancelEventArgs^ e) {
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-	int num = (int)numericUpDown1->Value;
-	if (k!=11 && num<100000 && num>=0)
-	dataGridView1->Rows[0]->Cells[k++]->Value = (int)numericUpDown1->Value;
+	if (numericUpDown1->Text == "") MessageBox::Show("Введите число");
 	else {
-		if (num>99999)
-			MessageBox::Show("Число " + num + " выходит за 5 разрядов");
-		if (k>=11)
-			MessageBox::Show("Нельзя вводить больше 10 чисел");
-		if (num < 0)
-			MessageBox::Show("Число "+ num + " отрицательное");
+		int num = (int)numericUpDown1->Value;
+		if (k != 11 && num < 100000 && num >= 0)
+			dataGridView1->Rows[0]->Cells[k++]->Value = (int)numericUpDown1->Value;
+		else {
+			if (num > 99999)
+				MessageBox::Show("Число " + num + " выходит за 5 разрядов");
+			if (k >= 11)
+				MessageBox::Show("Нельзя вводить больше 10 чисел");
+			if (num < 0)
+				MessageBox::Show("Число " + num + " отрицательное");
+		}
 	}
 }
 private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
