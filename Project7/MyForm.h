@@ -256,6 +256,7 @@ namespace Project7 {
 			// 
 			this->numericUpDown1->Location = System::Drawing::Point(49, 67);
 			this->numericUpDown1->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1410065407, 2, 0, 0 });
+			this->numericUpDown1->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1410065407, 2, 0, System::Int32::MinValue });
 			this->numericUpDown1->Name = L"numericUpDown1";
 			this->numericUpDown1->Size = System::Drawing::Size(120, 22);
 			this->numericUpDown1->TabIndex = 4;
@@ -285,7 +286,7 @@ namespace Project7 {
 			// 
 			this->button4->Location = System::Drawing::Point(592, 66);
 			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(149, 23);
+			this->button4->Size = System::Drawing::Size(197, 23);
 			this->button4->TabIndex = 7;
 			this->button4->Text = L"Удалить последний";
 			this->button4->UseVisualStyleBackColor = true;
@@ -340,13 +341,15 @@ private: System::Void contextMenuStrip1_Opening(System::Object^ sender, System::
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	int num = (int)numericUpDown1->Value;
-	if (k!=11 && num<100000)
+	if (k!=11 && num<100000 && num>=0)
 	dataGridView1->Rows[0]->Cells[k++]->Value = (int)numericUpDown1->Value;
 	else {
 		if (num>99999)
 			MessageBox::Show("Число " + num + " выходит за 5 разрядов");
 		if (k>=11)
-			MessageBox::Show("Введено больше 10 чисел");
+			MessageBox::Show("Нельзя вводить больше 10 чисел");
+		if (num < 0)
+			MessageBox::Show("Число "+ num + " отрицательное");
 	}
 }
 private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
