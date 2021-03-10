@@ -2,6 +2,7 @@
 #include "math.h"
 bool arith(int a)
 {
+	if (a < 10) return false;
 	int k =  (a % 10) - (a / 10) % 10 ;
 	a /= 100;
 	int d=0;
