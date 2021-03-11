@@ -4,6 +4,7 @@
 #include "arith.h"
 #include "string.h"
 #include <vector>
+#include "checkBox.h"
 static int k = 1;//Кол-во введенных элементов (-1)
 
 namespace Project7 {

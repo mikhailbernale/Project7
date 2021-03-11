@@ -121,11 +121,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="arith.cpp" />
+    <ClCompile Include="checkBox.cpp" />
     <ClCompile Include="mod_7.cpp" />
     <ClCompile Include="MyForm.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="arith.h" />
+    <ClInclude Include="checkBox.h" />
     <ClInclude Include="mod_7.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
