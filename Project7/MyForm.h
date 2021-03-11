@@ -347,11 +347,11 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 		if (k != 11 && num < 100000 && num >= 0)
 			dataGridView1->Rows[0]->Cells[k++]->Value = (int)numericUpDown1->Value;
 		else {
-			if (num > 99999)
+			if (checkbox(num) ==2 )
 				MessageBox::Show("Число " + num + " выходит за 5 разрядов");
-			if (k >= 11)
+			if (checkbox (num) == 3 )
 				MessageBox::Show("Нельзя вводить больше 10 чисел");
-			if (num < 0)
+			if ( checkbox (num) == 4)
 				MessageBox::Show("Число " + num + " отрицательное");
 		}
 	}

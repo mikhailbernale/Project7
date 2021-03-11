@@ -2,4 +2,4 @@
 
 #include <string>
 using namespace std;
-int checkbox(string s);
+int checkbox(int num);
