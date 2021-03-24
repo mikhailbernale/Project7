@@ -13,10 +13,11 @@ namespace UnitTest1
 		TEST_METHOD(TestMethod1)
 		{
 			Assert::AreEqual(arith(34), true);
-			//Assert::AreEqual(arith(159), true);
+			Assert::AreEqual(arith(159), true);
 			Assert::AreEqual(arith(125), false);
 			Assert::AreEqual(arith(0), false);
-			Assert::AreEqual(arith(1444), false);
+			Assert::AreEqual(arith(777), true);
+		Assert::AreEqual(arith(1444), false);
 			Assert::AreEqual(arith(123), true);
 			Assert::AreEqual(arith(343), false);
 

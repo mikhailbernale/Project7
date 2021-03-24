@@ -1,24 +1,45 @@
 #include "arith.h"
 #include "math.h"
-#include <vector>
 bool arith(int a)
 {
-	int delta = 0;
-	int delta2 = 0;
-	std::vector<int> d;
-	while (a > 0) {
-		d.push_back(a % 10);
+	int i=0;
+	if (a == 0) return false;
+	int b = a;
+	while (b > 0) {
+		i++;
+		b /= 10;
+	}
+	if (i == 1) return false;
+	if (i == 2) return true;
+	if (i == 3) {
+
+		int delta1 = a % 10 - a / 10 % 10;
 		a /= 10;
-	}
-	int i = 0;
-	if (d.size() == 1||d.size() == 0) return false;
-	if (d.size() == 2) return true;
-	while(i<d.size())
-	{
-		delta = d[i] - d[++i];
-		delta2 = d[i] - d[i+1];
-		if (delta != delta2) return false;
-	}
+		int delta2 = a % 10 - a / 10 % 10;
+		if (delta1 != delta2) return false;
+
+	};
+	if (i == 4) {
+		int delta1 = a % 10 - a / 10 % 10;
+		a /= 10;
+		int delta2 = a % 10 - a / 10 % 10;
+		a /= 10;
+		if (delta1 != delta2) return false;
+		int delta3 = a % 10 - a / 10 % 10;
+		if (delta2 != delta3) return false;
+	};
+	if (i == 5) {
+		int delta1 = a % 10 - a / 10 % 10;
+		a /= 10;
+		int delta2 = a % 10 - a / 10 % 10;
+		a /= 10;
+		if (delta1 != delta2) return false;
+		int delta3 = a % 10 - a / 10 % 10;
+		if (delta2 != delta3) return false;
+		a /= 10;
+		int delta4 = a % 10 - a / 10 % 10;
+		if (delta3 != delta4) return false;
+	};
 	return true;
 }
 
